@@ -16,7 +16,7 @@ pipeline {
          stage("Terraform init stage"){
             steps {
                 script {
-                    dir('terraform') {
+                    dir('terraform1') {
                        sh'terraform init'
                        sh'terraform fmt'
                        sh'terraform validate'
@@ -33,7 +33,7 @@ pipeline {
             }
             steps {
                 script {
-                    dir('terraform') {
+                    dir('terraform1') {
                         echo "You are about to ${params.action} to create the aws eks cluster"
                         
                        
@@ -51,7 +51,7 @@ pipeline {
             }
             steps {
                 script {
-                    dir('terraform') {
+                    dir('terraform1') {
 
                         echo "You are about to ${params.action} the aws eks cluster and its resources"
                         
@@ -65,7 +65,7 @@ pipeline {
             steps {
                 script {
                     dir('kubernetes') {
-                        sh "aws eks update-kubeconfig --name myapp-eks-cluster"
+                        sh "aws eks update-kubeconfig --name my-eks-cluster-209"
                         sh 'kubectl config current-context'
                         sh 'eksctl get cluster'
                         sh "kubectl get ns"

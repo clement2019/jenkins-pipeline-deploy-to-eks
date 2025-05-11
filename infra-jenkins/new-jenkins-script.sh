@@ -16,7 +16,7 @@ sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.rel
 sudo apt install terraform -y
 
 echo "Waiting for 30 seconds before installing the kubectl.."
-sleep 30
+sleep 10
 # install kubectl on the EC2 instance
 
 sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
@@ -24,7 +24,7 @@ sudo chmod +x ./kubectl
 sudo mkdir -p $HOME/bin && sudo cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
 
 echo "Waiting for 30 seconds before installing the aws cli..."
-sleep 30
+sleep 10
 
 ## install aws cli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
@@ -37,7 +37,7 @@ sudo ./aws/install
 aws --version
 
 echo "Waiting for 30 seconds before installing the jenkins package..."
-sleep 30
+sleep 10
 
 #another method of installing jenkins
 sudo apt update -y
