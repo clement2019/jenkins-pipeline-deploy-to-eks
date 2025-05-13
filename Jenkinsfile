@@ -72,6 +72,20 @@ pipeline {
                 }
             }
         }
+        stage("Deploy to EKS") {
+            steps {
+                script {
+                    dir('kubernetes') {
+                        sh "aws eks update-kubeconfig --name aws-eks-cluster"
+                        sh 'kubectl config current-context'
+                        //sh 'eksctl get cluster'
+                        sh "kubectl get ns"
+                        sh "kubectl apply -f nginx-deployment.yaml"
+                        sh "kubectl apply -f nginx-service.yaml"
+                    }
+                }
+            }
+        }
         stage("Destroy the Aws EKS Cluster") {
              when {
                 expression {
@@ -91,19 +105,6 @@ pipeline {
                 }
             }
         }
-        stage("Deploy to EKS") {
-            steps {
-                script {
-                    dir('kubernetes') {
-                        sh "aws eks update-kubeconfig --name aws-eks-cluster"
-                        sh 'kubectl config current-context'
-                        //sh 'eksctl get cluster'
-                        sh "kubectl get ns"
-                        sh "kubectl apply -f nginx-deployment.yaml"
-                        sh "kubectl apply -f nginx-service.yaml"
-                    }
-                }
-            }
-        }
+        
     }
 }
