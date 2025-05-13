@@ -12,9 +12,9 @@ module "eks" {
     kube-proxy = {
       most_recent = true
     }
-    vpc-cni = {
-      most_recent = true
-    }
+    #vpc-cni = {
+      #most_recent = true
+    #}
     
   }
    resource "aws_eip" "nat" {
