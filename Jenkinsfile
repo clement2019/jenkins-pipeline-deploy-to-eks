@@ -95,7 +95,7 @@ pipeline {
             steps {
                 script {
                     dir('kubernetes') {
-                        sh "aws eks update-kubeconfig --name my-eks-cluster-209"
+                        sh "aws eks update-kubeconfig --name aws-eks-cluster"
                         sh 'kubectl config current-context'
                         sh 'eksctl get cluster'
                         sh "kubectl get ns"
