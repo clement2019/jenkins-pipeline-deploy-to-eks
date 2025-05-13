@@ -32,3 +32,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 one you entered jenkins passwoord in the escreenshots below
 
 ![Image](https://github.com/user-attachments/assets/d8ecd5b5-65fc-446e-ba42-b6663337cae6)
+
+# the below is the screenshots of the jenkins dashboard
+
+![Image](https://github.com/user-attachments/assets/8be14fd7-6805-49a8-a073-8b4ad8b69e6f)

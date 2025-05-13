@@ -15,7 +15,12 @@ module "eks" {
     vpc-cni = {
       most_recent = true
     }
+    
   }
+   resource "aws_eip" "nat" {
+    domain = "vpc"
+  # ... other configuration
+
 
   vpc_id                   = module.vpc.vpc_id
   subnet_ids               = module.vpc.private_subnets
