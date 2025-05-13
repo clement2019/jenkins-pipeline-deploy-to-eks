@@ -23,5 +23,12 @@ Installation of Terraform
 # Run this to SSH into EC2
 ssh -i devops_key.pem ubuntu@$(terraform output -raw jenkinsapp-server_public_ip)
 
+confirm that jenkins is up and active  run t6he command below
+sudo systemctl status jenkins
+![Image](https://github.com/user-attachments/assets/ad53e5cc-315d-476a-80f2-1219aa55835b)
+
 # Use this to get the jenkins Admin password
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+one you entered jenkins passwoord in the escreenshots below
+
+![Image](https://github.com/user-attachments/assets/d8ecd5b5-65fc-446e-ba42-b6663337cae6)
