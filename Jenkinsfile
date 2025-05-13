@@ -16,10 +16,40 @@ pipeline {
          stage("Terraform init stage"){
             steps {
                 script {
-                    dir('terraform1') {
+                    dir('terraform') {
                        sh'terraform init'
+                      
+                    }
+                }
+            }
+        }
+        stage("Terraform format stage"){
+            steps {
+                script {
+                    dir('terraform') {
+                       
                        sh'terraform fmt'
+                      
+                    }
+                }
+            }
+        }
+        stage("Terraform validate stage"){
+            steps {
+                script {
+                    dir('terraform') {
+                      
                        sh'terraform validate'
+                    }
+                }
+            }
+        }
+        stage("Terraform plan stage"){
+            steps {
+                script {
+                    dir('terraform') {
+                      
+                       sh'terraform plan'
                     }
                 }
             }
@@ -33,7 +63,7 @@ pipeline {
             }
             steps {
                 script {
-                    dir('terraform1') {
+                    dir('terraform') {
                         echo "You are about to ${params.action} to create the aws eks cluster"
                         
                        
@@ -51,7 +81,7 @@ pipeline {
             }
             steps {
                 script {
-                    dir('terraform1') {
+                    dir('terraform') {
 
                         echo "You are about to ${params.action} the aws eks cluster and its resources"
                         
