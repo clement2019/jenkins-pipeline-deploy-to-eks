@@ -73,6 +73,12 @@ pipeline {
             }
         }
         stage("Deploy to EKS") {
+             when {
+                expression {
+                    //return params.Appenv
+                    return params.action=="apply"
+                }
+            }
             steps {
                 script {
                     dir('kubernetes') {
