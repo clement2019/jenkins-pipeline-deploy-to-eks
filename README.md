@@ -1,16 +1,16 @@
 # Jenkins-pipeline-deploy-to-eks
-## Project Name: End to end deployment of Applications to Kubernetes using a Jenkins CI/CD Pipeline
-## Steps for the project
+### Project Name: End to end deployment of Applications to Kubernetes using a Jenkins CI/CD Pipeline
+### Steps for the project
 
-## 1. Create a Keypair that matches your keypair
-## 2. Create a Jenkins Server with all the dependencies, libraries and packagies needed.
-## 2. Once completed, access the Jenkins server and Set it up
-## 4. Run the jenkins-pipeline-deploy-to-eks to create Kubernetes Cluster, create deployments and Services
-## 5. Test that the application is running 
-## 6. Destroy infrastructure
+### 1. Create a Keypair that matches your keypair
+### 2. Create a Jenkins Server with all the dependencies, libraries and packagies needed.
+### 2. Once completed, access the Jenkins server and Set it up
+### 4. Run the jenkins-pipeline-deploy-to-eks to create Kubernetes Cluster, create deployments and Services
+### 5. Test that the application is running 
+### 6. Destroy infrastructure
 
 
-## project Outlook and Projectory
+### project Outlook and Projectory
 
 - provisioing the jenkins-server sitting on an EC2 instance created
 - Accessibility to this Ec2 instance through port 8080 defined in SG
@@ -28,18 +28,24 @@
 
 ### project Prerequisites
 Installation and configuration of AWS CLI
+
 Installation of Terraform
+
 ![Image](https://github.com/user-attachments/assets/8f1dd791-757f-4598-8c86-a840e5bf7964)
 
 ### Run this to SSH into EC2
+
 ssh -i devops_key.pem ubuntu@$(terraform output -raw jenkinsapp-server_public_ip)
 
-confirm that jenkins is up and active  run t6he command below
+### confirm that jenkins is up and active  run t6he command below
+
 sudo systemctl status jenkins
+
 ![Image](https://github.com/user-attachments/assets/ad53e5cc-315d-476a-80f2-1219aa55835b)
 
 ### Use this to get the jenkins Admin password
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
 one you entered jenkins passwoord in the escreenshots below
 
 ![Image](https://github.com/user-attachments/assets/d8ecd5b5-65fc-446e-ba42-b6663337cae6)
@@ -51,41 +57,59 @@ one you entered jenkins passwoord in the escreenshots below
 ### Now, let’s see if we have logged it correctly to our cluster:
 
 kubectl config current-context
+
 arn:aws:eks:eu-west-1:012321433432232:cluster/example
 
 
 
-You can view your cluster’s nodes by running the following command:
+### You can view your cluster’s nodes by running the following command:
 
-kubectl get nodes   
+kubectl get nodes 
+
 NAME                                       STATUS   ROLES    AGE   VERSION
+
 ip-10-0-0-78.eu-west-2.compute.internal    Ready    <none>   14m   v1.31.7-eks-473151a
+
 ip-10-0-1-151.eu-west-2.compute.internal   Ready    <none>   14m   v1.31.7-eks-473151a
 
 
 ### To get more specific details about them, you can use the -o custom-columns options:
-kubectl get nodes -o custom-columns=Name:.metadata.name,nCPU:.status.capacity.cpu,Memory:.status.capacity.memory
+
+kubectl get nodes -o custom-columns=Name:.metadata.name,nCPU:.status.capacity.cpu,Memory:.status.
+
+capacity.memory
+
 Name                                       nCPU   Memory
+
 ip-10-0-0-78.eu-west-2.compute.internal    2      3919464Ki
+
 ip-10-0-1-151.eu-west-2.compute.internal   2      3919464Ki
 
 ### With the long command from above, we can view the number of CPUs our nodes have and their available memory.
 
 ### Let’s deploy an Nginx instance to see if the cluster is working correctly:
+
 kubectl run --port 80 --image nginx nginx
+
 pod/nginx created
 
-kubectl get pods      
+kubectl get pods    
+
 NAME    READY   STATUS    RESTARTS   AGE
+
 nginx   1/1     Running   0          34s
 
 ### Now, let’s set up a tunnel from your computer to this pod:
 
 
 kubectl port-forward nginx 3000:80
+
 Forwarding from 127.0.0.1:3000 -> 80
+
 Forwarding from [::1]:3000 -> 80
+
 Handling connection for 3000
+
 Handling connection for 3000
 
 
