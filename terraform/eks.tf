@@ -12,7 +12,7 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
 
   eks_managed_node_groups = {
-    example = {
+    aws-cluster-201 = {
       //instance_types = ["t3.medium"]
       instance_types = ["t2.small"]
       min_size       = 1

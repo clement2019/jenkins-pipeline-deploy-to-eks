@@ -206,5 +206,9 @@ one you entered jenkins passwoord in the escreenshots below
 
 ![Image](https://github.com/user-attachments/assets/512baa89-0401-4e27-b6af-79f6d214f726)
 
+Now run the build with parameters on the kenkins dashbaod the ill trigger the jenkins file to first deployerd the aws-eks cluster and latter deploy the nginx using the nginx-deployment.yaml file na dthe nginx-service.yaml file
+with types as load balancer
+
+![Image](https://github.com/user-attachments/assets/293f8a66-5c34-44e8-9ba7-6cb91a35c3ab)
 
 
