@@ -82,7 +82,7 @@ pipeline {
             steps {
                 script {
                     dir('kubernetes') {
-                        sh "aws eks update-kubeconfig --name aws-cluster-201"
+                        sh "aws eks update-kubeconfig --name example"
                         sh 'kubectl config current-context'
                         //sh 'eksctl get cluster'
                         sh "kubectl get ns"
