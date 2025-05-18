@@ -44,73 +44,41 @@ pipeline {
                 }
             }
         }
-        stage("Terraform plan stage"){
-            steps {
-                script {
-                    dir('terraform') {
+        stage('Previewing the infrastructure'){
+            steps{
+                script{
+                    dir('terraform'){
+                         sh 'terraform plan'
+                    }
+                    input(message: "Approve?", ok: "proceed")
+                }
+            }
+        }
+        stage('Create/Destroy an EKS cluster'){
+            steps{
+                script{
+                    dir('terraform'){
+                         sh 'terraform $action --auto-approve'
+                    }
+                }
+            }
+        }
+        stage('Deploying to Kubernetes') {
+          steps {
+            script {
+            dir('kubernetes') {
+              sh "aws eks update-kubeconfig --name example"
+              sh 'kubectl config current-context'
                       
-                       sh'terraform plan'
-                    }
-                }
-            }
-        }
-        stage("Create an EKS Cluster") {
-             when {
-                expression {
-                    //return params.Appenv
-                    return params.action=="apply"
-                }
-            }
-            steps {
-                script {
-                    dir('terraform') {
-                        echo "You are about to ${params.action} to create the aws eks cluster"
-                        
-                       
-                        sh'terraform ${action} --auto-approve'
-                    }
-                }
-            }
-        }
-        stage("Deploy to EKS") {
-             when {
-                expression {
-                    //return params.Appenv
-                    return params.action=="apply"
-                }
-            }
-            steps {
-                script {
-                    dir('kubernetes') {
-                        sh "aws eks update-kubeconfig --name example"
-                        sh 'kubectl config current-context'
-                        //sh 'eksctl get cluster'
-                        sh "kubectl get ns"
-                        sh "kubectl apply -f nginx-deployment.yaml"
-                        sh "kubectl apply -f nginx-service.yaml"
-                    }
-                }
-            }
-        }
-        stage("Destroy the Aws EKS Cluster") {
-             when {
-                expression {
-                    //return params.Appenv
-                    return params.action=="destroy"
-                }
-            }
-            steps {
-                script {
-                    dir('terraform') {
+              sh "kubectl get ns"
+              sh "kubectl apply -f nginx-deployment.yaml"
+              sh "kubectl apply -f nginx-service.yaml"
 
-                        echo "You are about to ${params.action} the aws eks cluster and its resources"
-                        
-                       
-                        sh'terraform ${action} --auto-approve'
-                    }
-                }
-            }
+          }
         }
-        
+      }
     }
+
+  }
 }
+    

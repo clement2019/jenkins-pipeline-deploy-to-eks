@@ -102,7 +102,6 @@ Handling connection for 3000
 now git clone the project urlas shown below
 
 git clone https://github.com/clement2019/jenkins-pipeline-deploy-to-eks.git
-
 cd infra-jenkins
 
 ### The folder contains the terraform files to deply jenkins
@@ -110,6 +109,7 @@ cd infra-jenkins
 ### now run the following command
 
 terraform init
+
 
 terraform fmt
 
