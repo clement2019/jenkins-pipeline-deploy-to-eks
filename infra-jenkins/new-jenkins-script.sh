@@ -41,6 +41,7 @@ echo "Waiting for 30 seconds before installing the jenkins package..."
 sleep 10
 
 #another method of installing jenkins
+#!/bin/bash
 sudo apt update -y
 
 sudo apt upgrade -y 
@@ -54,3 +55,4 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update -y 
 sudo apt-get install jenkins -y
+jenkins --version

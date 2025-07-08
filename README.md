@@ -2,22 +2,22 @@
 ### Project Name: End to end deployment of Applications to Kubernetes using a Jenkins CI/CD Pipeline
 ### Steps for the project
 
-### 1. Create a Keypair that matches your keypair
-### 2. Create a Jenkins Server with all the dependencies, libraries and packagies needed.
-### 2. Once completed, access the Jenkins server and Set it up
-### 4. Run the jenkins-pipeline-deploy-to-eks to create Kubernetes Cluster, create deployments and Services
-### 5. Test that the application is running 
-### 6. Destroy infrastructure
+#### 1. Create a Keypair that matches your keypair
+#### 2. Create a Jenkins Server with all the dependencies, libraries and packagies needed.
+#### 2. Once completed, access the Jenkins server and Set it up
+#### 4. Run the jenkins-pipeline-deploy-to-eks to create Kubernetes Cluster, create deployments and Services
+#### 5. Test that the application is running 
+#### 6. Destroy infrastructure
 
 
-### project Outlook and Projectory
+#### project Outlook and Projectory
 
 - provisioing the jenkins-server sitting on an EC2 instance created
 - Accessibility to this Ec2 instance through port 8080 defined in SG
 - the user me can only have access through SSH connection
 - The provioning was done solely using terraform (IAC)
 
-### Workflow for this task using Terraform?
+#### Workflow for this task using Terraform?
 - VPC creation effected to start with
 - Internet Gateway created while attaching it the VPC using a Route Table
 - Public Subnet creation and associate it with the Route Table
@@ -34,9 +34,9 @@ Installation of Terraform
 ![Image](https://github.com/user-attachments/assets/8f1dd791-757f-4598-8c86-a840e5bf7964)
 
 
-# MANUAL DEPLOYMENT OF AWS EKS ON MY LOCAL MACHINE
+#### MANUAL DEPLOYMENT OF AWS EKS ON MY LOCAL MACHINE
 
-### Now, let’s see if we have logged it correctly to our cluster:
+#### Now, let’s see if we have logged it correctly to our cluster:
 
 kubectl config current-context
 
